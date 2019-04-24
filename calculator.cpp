@@ -1,3 +1,4 @@
+//github: https://github.com/GuanlinWang/Assignment-6
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -32,7 +33,7 @@ int main() {
     char op;
     ofstream outFile ("output.txt");
     ifstream inFile ("largeNumbers.txt");
-    
+
     while (!inFile.eof()){
         left  = writeNum(inFile);
         right = writeNum(inFile);
@@ -42,32 +43,32 @@ int main() {
             break;
         }
         op = getOperator(inFile);
-        
+
         if (op == '+'){
             result = addNumbers(left, right);
         }
-//          else {
-//            test = digcmp(left, right);
-//            if (test > 0) {
-//                result = subNumbers(left, right); // result will be positive
-//                result = clearLeadingZeros(result);
-//            } else if (test < 0) {
-//                result = subNumbers(right, left); // result will be negative
-//                result = clearLeadingZeros(result);
-//                setNeg(result);
-//            } else {
-//                result = new digit; // result of subtraction was zero
-//            }
-//        }
+       //   else {
+       //     test = digcmp(left, right);
+       //     if (test > 0) {
+       //         result = subNumbers(left, right); // result will be positive
+       //         result = clearLeadingZeros(result);
+       //     } else if (test < 0) {
+       //         result = subNumbers(right, left); // result will be negative
+       //         result = clearLeadingZeros(result);
+       //         setNeg(result);
+       //     } else {
+       //         result = new digit; // result of subtraction was zero
+       //     }
+       // }
         writeNum(result, outFile);
-       // deleteNum(left);
-       // deleteNum(right);
-        //deleteNum(result);
+        // deleteNum(left);
+        // deleteNum(right);
+        // deleteNum(result);
         left = nullptr;
         right = nullptr;
         result = nullptr;
     }
-    
+
     outFile.close();
     inFile.close();
     return 0;
@@ -109,10 +110,10 @@ digit * writeNum(ifstream & file){
         return nullptr;
     digit * head = new digit;
     digit * dig = head;
-    
+
     char aChar;
     int num;
-    
+
     file.get(aChar);
     while (aChar != '\n' && !file.eof()){
         num = int(aChar - '0');
@@ -131,10 +132,10 @@ digit * writeNum(ifstream & file){
 char getOperator(ifstream & file){
     char aChar;
     string toss;
-    
+
     file.get(aChar);
     getline(file, toss);
-    
+
     return aChar;
 }
 
@@ -150,7 +151,7 @@ void printRecursive(digit * num){
 void printNum(digit * num){
     printRecursive(num);
     cout << endl;
-    
+
 }
 
 //-----------------PROVIDED BY INSTRUCTOR-----------------
@@ -191,7 +192,7 @@ digit* addNumbers(digit * left, digit * right)
     {
         if(left!=nullptr&&right!=nullptr)
         {
-        
+
             sum=carry+left->data+right->data;
             if(sum>=10)
             {
@@ -200,10 +201,10 @@ digit* addNumbers(digit * left, digit * right)
             }
             else{carry=0;}
         }
-        
+
         if(left==nullptr&&right!=nullptr)
         {
-            
+
             sum=carry+right->data;
             if(sum>=10)
             {
@@ -214,7 +215,7 @@ digit* addNumbers(digit * left, digit * right)
         }
         if(right==nullptr&&left!=nullptr)
         {
-       
+
             sum=carry+left->data;
             if(sum>=10)
             {
@@ -244,7 +245,6 @@ digit* addNumbers(digit * left, digit * right)
         {
         right=right->next;
         }
-        cout<<sum<<" ";
         if(left==nullptr&&right==nullptr)
         {
             break;
@@ -286,4 +286,3 @@ digit * clearLeadingZeros(digit * num){
 void setNeg(digit * num){
     num->data = -num->data;
 }
-
